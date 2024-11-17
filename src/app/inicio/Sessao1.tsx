@@ -52,7 +52,7 @@ export default function Sessao1(){
                         </div>
                     </div>
 
-                    <Image src={logo} alt="logo green goal" width={150} height={150} className="m-auto"/>
+                    <Image src={logo} alt="logo green goal" width={250} height={250} className="m-auto"/>
                     
                 </div>
                 

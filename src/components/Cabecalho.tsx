@@ -1,3 +1,4 @@
+"use client"
 import logo from "../images/logo.png"
 import Image from "next/image"
 import { MdOutlineHome } from "react-icons/md";
