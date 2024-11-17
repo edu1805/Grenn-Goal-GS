@@ -1,11 +1,14 @@
 "use client"
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { HiEye } from "react-icons/hi2";
 import { HiEyeSlash } from "react-icons/hi2";
 
 export default function Cadastro(){
+
+    const router = useRouter()
 
     const {
         register,
@@ -15,7 +18,8 @@ export default function Cadastro(){
     
     const onSubmit = (data: any) => {
         console.log("Dados enviados:", data);
-        alert("Formulário enviado com sucesso!");
+        alert("Cadastrado com sucesso!");
+        router.push('/')
     };
 
     const [showPassword, setShowPassword] = useState(false);
@@ -57,9 +61,9 @@ export default function Cadastro(){
                     {errors.password && (<p className="text-red-500 text-sm mt-1">{errors.password.message?.toString()}</p>)}
                 </div>
                     
-              <button type="submit" 
+              <button onSubmit={onSubmit} type="submit" 
               className="w-full bg-blue-500 text-white font-semibold p-2 rounded-md hover:bg-blue-600 transition mb-3">
-                Enviar
+                Cadastrar-se
               </button>
             </form>
             <div className="flex justify-between">
