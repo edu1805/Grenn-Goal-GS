@@ -4,6 +4,7 @@ import Image from "next/image";
 import previsao from "/src/images/analise-de-previsao.png"
 import grafico1 from "/src/images/grafico-consumo.png"
 import grafico2 from "/src/images/grafico-2.png"
+import Link from "next/link";
 
 export default function Sessao2(){
 
@@ -24,10 +25,10 @@ export default function Sessao2(){
                     <p className="text-center mt-8">Metas</p>
                 </button>
 
-                <button className="bg-gradient-to-b from-[#4A9500] to-[#9FEF50] w-fit p-5 px-8 rounded-xl hover:underline">
+                <Link href={'/previsao'} className="bg-gradient-to-b from-[#4A9500] to-[#9FEF50] w-fit p-5 px-8 rounded-xl hover:underline">
                     <Image src={previsao} alt="daily challenges" className="mb-3"/>
                     <p>Previsão de gastos</p>
-                </button>
+                </Link>
             </div>
 
             <div className="m-5 grid grid-cols-2">
