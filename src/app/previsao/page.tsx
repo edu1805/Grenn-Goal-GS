@@ -4,7 +4,7 @@ import { SubmitHandler, useForm, FieldValues } from "react-hook-form";
 import { useState } from "react";
 
 interface FormData {
-    consumption: number;
+    consumoMedioMensal: number;
     price: number;
     residenceType: string;
     peopleCount: number;
@@ -16,10 +16,10 @@ export default function Previsao(){
     const [totalCost, setTotalCost] = useState<number | null>(null);
 
     const calculateTotalCost = (data:FormData) => {
-        const { consumption, price, residenceType, peopleCount } = data;
+        const { consumoMedioMensal, price, residenceType, peopleCount } = data;
     
         // Cálculo simples (pode ser modificado conforme necessário)
-        const total= consumption * price;
+        const total= consumoMedioMensal * price;
         setTotalCost(total);
     };
 
@@ -42,12 +42,12 @@ export default function Previsao(){
                 <form onSubmit={handleSubmit(onSubmit)} className=" grid grid-cols-2 gap-x-6">
                   <div>
                     <div className="mb-3">
-                      <label htmlFor="consumption" className="block font-medium text-black">Consumo Médio Mensal (KWh):</label>
-                      <input id="consumption" type="number" placeholder="Ex: 4000kwh"
-                        {...register("consumption", {required: "O consumo é obrigatório", min: {value: 0, message: "O consumo deve ser um valor maior que 0",}})}
+                      <label htmlFor="consumoMedioMensal" className="block font-medium text-black">Consumo Médio Mensal (KWh):</label>
+                      <input id="consumoMedioMensal" type="number" placeholder="Ex: 4000kwh"
+                        {...register("consumoMedioMensal", {required: "O consumo é obrigatório", min: {value: 0, message: "O consumo deve ser um valor maior que 0",}})}
                         className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
                       />
-                      {errors.consumption && (<p className="text-red-500 text-sm mt-1">{errors.consumption.message?.toString()}</p>)}
+                      {errors.consumoMedioMensal && (<p className="text-red-500 text-sm mt-1">{errors.consumoMedioMensal.message?.toString()}</p>)}
                     </div>
 
                     <div>
