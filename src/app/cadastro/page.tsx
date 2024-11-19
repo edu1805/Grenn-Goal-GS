@@ -1,10 +1,12 @@
 "use client"
+import { METHODS } from "http";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { HiEye } from "react-icons/hi2";
 import { HiEyeSlash } from "react-icons/hi2";
+
 
 export default function Cadastro(){
 
@@ -13,13 +15,27 @@ export default function Cadastro(){
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors },
     } = useForm();
     
-    const onSubmit = (data: any) => {
-        console.log("Dados enviados:", data);
-        alert("Cadastrado com sucesso!");
-        router.push('/')
+    const onSubmit = async (data:any) => {
+        try{
+            const response = await fetch("/src/app/api/usuario", {method: "POST", headers: {"Content-Type": "application/json",}, body: JSON.stringify(data),})
+
+            if(response.ok){
+                console.log("Dados enviados:", data);
+                alert("Cadastrado com sucesso!");
+                reset()
+                router.push('/')
+            }else{
+                alert("Erro ao cadastrar usuário")
+            }
+        }catch (error){
+            alert("Erro ao conectar na API")
+
+        }
+        
     };
 
     const [showPassword, setShowPassword] = useState(false);
@@ -49,6 +65,17 @@ export default function Cadastro(){
                       })} placeholder="example@gmail.com"
                     />
                     {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message?.toString()}</p>}
+                </div>
+
+                <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700">CPF:</label>
+                    <input id="cpf" type="text"
+                      className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                      {...register("cpf", {required: "O cpf é obrigatório", 
+                        pattern: {value: /^\d{3}\.\d{3}\.\d{3}-\d{2}$/, message: "Por favor, insira um cpf válido",},
+                      })} placeholder="000.000.000-00"
+                    />
+                    {errors.cpf && <p className="text-red-500 text-sm mt-1">{errors.cpf.message?.toString()}</p>}
                 </div>
                     
                 <div className="relative">
