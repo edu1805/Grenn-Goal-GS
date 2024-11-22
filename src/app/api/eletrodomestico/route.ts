@@ -2,24 +2,34 @@ import { NextResponse } from "next/server";
 
 export async function POST(request: Request){
     try {
-        const { nome, tipo, potencia, horasPorDia, quantidade } = await request.json();
+        const { residenciaId, eletrodomesticos } = await request.json();
 
-        const newEletro = {nome, tipo, potencia, horasPorDia, quantidade};
-
-        const apiResponse = await fetch("http://localhost:8080/greengoalproject_war/api/eletrodomestico",
-            {
-                method: "POST",
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify(newEletro),
-            }
-        )
-
-        if (!apiResponse.ok) {
-            console.log(`Erro na API: ${apiResponse.statusText}`);
+        if (!residenciaId || !eletrodomesticos || !Array.isArray(eletrodomesticos)) {
+            return NextResponse.json(
+              { message: "Dados inválidos. Verifique residenciaId e eletrodomesticos." },
+              { status: 400 }
+            );
         }
-        const createdEletro = await apiResponse.json();
 
-        return NextResponse.json(createdEletro);
+        const results = [];
+        for (const eletro of eletrodomesticos) {
+            const newEletro = { ...eletro, residenciaId };
+        
+            const apiResponse = await fetch("http://localhost:8080/greengoalproject_war/api/eletrodomestico",
+                {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify(newEletro),
+                }
+            )
+
+            if (!apiResponse.ok) {
+                console.log(`Erro na API: ${apiResponse.statusText}`);
+            }
+            const createdEletro = await apiResponse.json();
+            results.push(createdEletro);
+        }
+        return NextResponse.json(results);
     }catch (error) {
         console.error("Erro ao salvar elétrodomestico", error);
 
