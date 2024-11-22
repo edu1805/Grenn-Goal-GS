@@ -6,7 +6,7 @@ import Image from "next/image";
 export default function Sessao1(){
 
     return(
-        <section className="bg-[url(/src/images/imagem_fundo.png)] bg-green-500 p-6 grid grid-cols-2">
+        <section className="bg-[url('/imagem_fundo.png')] bg-green-500 p-6 grid grid-cols-2">
             <div className="w-1/2 bg-[#EAF5E9] p-6 ml-20 h-fit mt-11 rounded-xl">
                 <p className="mb-6 text-start">Junte-se ao GreenGoal e transforme suas metas de economia de energia em conquistas reais. Economize na conta de luz enquanto contribui para um futuro mais sustentável!</p>
                 <div className="w-fit m-auto">
