@@ -2,6 +2,7 @@
 import Cabecalho from "@/components/Cabecalho";
 import { SubmitHandler, useForm, FieldValues } from "react-hook-form";
 import { useState } from "react";
+import FormularioEletrodomesticos from "@/components/FormularioEletrodomestico";
 
 interface FormData {
     consumoMedioMensal: number;
@@ -33,7 +34,7 @@ export default function Previsao(){
     };
 
     return(
-        <main>
+        <main className="mb-10">
             <Cabecalho/>
             <h2 className="text-center text-2xl mt-8">Preencha o formulário abaixo para prever seu consumo de energia e descobrir o impacto de mudanças nos hábitos.</h2>
             <div className="max-w-5xl mx-auto bg-gray-400 p-6 rounded-md shadow-md mt-5">
@@ -64,7 +65,7 @@ export default function Previsao(){
                     <div className="mb-3 mt-0">
                       <label htmlFor="residenceType" className="block font-medium text-black">Tipo de Residência:</label>
                       <select id="residenceType" {...register("residenceType", { required: "Selecione o tipo de residência" })}
-                        className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                        className="mt-1 block w-full p-2 h-10 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
                       >
                         <option value="" disabled>Selecione o tipo de residência</option>
                         <option value="casa">Casa</option>
@@ -84,18 +85,24 @@ export default function Previsao(){
                       {errors.peopleCount && (<p className="text-red-500 text-sm mt-1">{errors.peopleCount.message?.toString()}</p>)}
                     </div>
                   </div>
-                  
-                  <div className="flex">
-                    <button type="submit"
-                      className="w-full bg-blue-500 text-white font-semibold p-2 py-2 mt-3 rounded-md hover:bg-blue-600 transition"
-                    >Calcular Custo</button>
-                  </div>
+                  <div></div>
 
                   <div className="text-end">
-                    <button type="button" onClick={handleReset} className="bg-gray-500 w-fit px-4 py-2 mt-4 text-white font-semibold rounded-md hover:bg-gray-600 transition ">Limpar</button>
+                    <button type="button" onClick={handleReset} className="bg-red-500 w-fit px-4 py-2 mt-4 text-white font-semibold rounded-md hover:bg-red-700 transition ">Limpar</button>
                   </div>
 
+                  
+                  {/* <div className="text-end">
+                    <button type="submit"
+                      className="w-fit h-fit bg-blue-500 text-white 
+                      font-semibold p-2 py-2 mt-40 rounded-md hover:bg-blue-600 transition"
+                    >Calcular Custo</button>
+                  </div> */}
+
                 </form>
+                <FormularioEletrodomesticos/>
+                
+                
                 {totalCost !== null && (
                     <div className="mt-4 p-4 bg-gray-100 rounded-md">
                         <h3 className="font-semibold">Custo Total Estimado:</h3>
