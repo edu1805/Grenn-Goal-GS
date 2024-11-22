@@ -31,18 +31,9 @@ export default function Previsao() {
         setTotalCost(total);
     };
 
-    const onSubmit: SubmitHandler<any> = (data) => {
-        setFormData(data);
-        calculateTotalCost();
-    };
-
-    const handleReset = () => {
-        reset();
-        setTotalCost(null);
-    };
-
     const handleSave = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        const usuarioId =22 
         try {
             const response = await fetch("/api/residencia", {
                 method: "POST",
@@ -54,6 +45,7 @@ export default function Previsao() {
 
             if (response.ok) {
                 alert("Dados salvos com sucesso!");
+                console.log(formData, usuarioId);
                 reset();
             } else {
                 alert("Erro ao salvar os dados.");
@@ -160,6 +152,12 @@ export default function Previsao() {
 
                 </form>
                 <FormularioEletrodomesticos />
+
+                <div className="mt-6 text-center">
+                    <button onClick={calculateTotalCost}
+                        className="bg-green-500 px-6 py-2 text-white font-semibold rounded-md hover:bg-green-600 transition">
+                            Calcular Custo</button>
+                </div>
 
                 {totalCost !== null && (
                     <div className="mt-4 p-4 bg-gray-100 rounded-md">

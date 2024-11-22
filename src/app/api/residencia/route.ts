@@ -2,7 +2,8 @@ import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
     try {
-        const { consumoMedioMensal, precoMedioEnergia, tipoResidencia, numeroPessoas, usuarioId } = await request.json();
+        const { consumoMedioMensal, precoMedioEnergia, tipoResidencia, numeroPessoas } = await request.json();
+        const usuarioId = 22
 
         // Cria o objeto da residência
         const novaResidencia = {
