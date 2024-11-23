@@ -83,7 +83,7 @@ export default function Sessao2(){
                         <p>Turma: 1TDSPJ</p>
                         <p>rm: 558154</p>
                         <p>GitHub: <a href="https://github.com/assis20" target="_blank" className="text-blue-600 underline ">https://github.com/assis20</a></p>
-                        <p>LinkedIn: <a href="" target="_blank" className="text-blue-600 underline "></a></p>
+                        <p>LinkedIn: <a href="https://www.linkedin.com/in/bruno-assis-violim-b76349222" target="_blank" className="text-blue-600 underline ">https://www.linkedin.com/in/bruno-assis-violim-b76349222</a></p>
                         
                     </div>
                 </div>
