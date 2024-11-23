@@ -1,12 +1,12 @@
 "use client"
 import { useState } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import Cabecalho from "@/components/Cabecalho";
 import FormularioEletrodomesticos from "@/components/FormularioEletrodomestico";
 
 export default function Previsao() {
 
-    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const { register, reset, formState: { errors } } = useForm();
     const [totalCost, setTotalCost] = useState<number | null>(null);
     const [formData, setFormData] = useState({
         consumoMedioMensal: 0,

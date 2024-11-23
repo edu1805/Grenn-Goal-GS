@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { HiEye } from "react-icons/hi2";
 import { HiEyeSlash } from "react-icons/hi2";
 
@@ -18,7 +18,7 @@ export default function Cadastro(){
 
     const router = useRouter()
 
-    const {register, handleSubmit, reset, formState: { errors }} = useForm();
+    const {register, reset, formState: { errors }} = useForm();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;

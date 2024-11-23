@@ -29,7 +29,7 @@ export async function PUT(request: Request, { params }: { params: { id: number }
 
 
 export async function GET(request: Request) {
-    const id = 8; // ID fixo
+    
 
     try {
         // URL da API externa que contém os desafios
